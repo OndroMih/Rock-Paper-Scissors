@@ -2,6 +2,7 @@ package rockpaperscissors;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  *
@@ -9,9 +10,9 @@ import java.util.List;
  */
 public class Game {
 
-    List<Round> rounds = new ArrayList<>();
-    Player player1 = new Player();
-    Player player2 = new Player();
+    private List<Round> rounds = new ArrayList<>();
+    private Player player1 = new Player();
+    private Player player2 = new Player();
     
     public int numberOfRoundsForCurrentUser() {
         return rounds.size();
@@ -27,6 +28,10 @@ public class Game {
 
     private void addRound(Round round) {
         rounds.add(round);
+    }
+
+    public Stream<Round> getRounds() {
+        return rounds.stream();
     }
     
 }

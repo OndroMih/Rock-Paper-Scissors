@@ -20,5 +20,9 @@ public class Round {
     public PlayersMove getMoveByPlayer2() {
         return moveByPlayer2;
     }
+    
+    public RoundResult getResult() {
+        return RoundResult.DRAW;
+    }
 
 }
