@@ -9,11 +9,19 @@ import rockpaperscissors.PlayRoundButton;
  */
 public class ObjectFactory {
     
+    private static final Game game;
+    private static final PlayRoundButton button;
+    
+    static {
+        game = new Game();
+        button = new PlayRoundButton(game());
+    }
+    
     public static PlayRoundButton playRoundButton() {
-        return new PlayRoundButton();
+        return button;
     }
     
     public static Game game() {
-        return new Game();
+        return game;
     }
 }

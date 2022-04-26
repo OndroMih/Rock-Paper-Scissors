@@ -6,11 +6,14 @@ package rockpaperscissors;
  */
 public class PlayRoundButton {
 
-    public PlayRoundButton() {
-    }
+    private Game game;
 
-    public void press() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public PlayRoundButton(Game game) {
+        this.game = game;
     }
     
+    public void press() {
+        game.playRound();
+    }
+
 }
