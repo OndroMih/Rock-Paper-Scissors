@@ -1,5 +1,7 @@
 package rockpaperscissors;
 
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
 import java.util.stream.Stream;
 import rockpaperscissors.store.DataStore;
 
@@ -7,6 +9,7 @@ import rockpaperscissors.store.DataStore;
  *
  * @author omihalyi
  */
+@Dependent
 public class Game {
 
     DataStore store;
@@ -14,6 +17,7 @@ public class Game {
     private Player player1 = new RandomPlayer();
     private Player player2 = new AlwaysRockPlayer();
 
+    @Inject
     public Game(DataStore store) {
         this.store = store;
     }
