@@ -1,5 +1,6 @@
 package unittests;
 
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import rockpaperscissors.Game;
@@ -64,10 +65,10 @@ public class MonitoringTest {
 
         playGameNumberOfTimesAndVerifyAgainstMetrics(game2, 3, m);
         playGameNumberOfTimesAndVerifyAgainstMetrics(game, 6, m);
-        
+
         game2.restart();
         verifyTestMetricsAgainstMonitoring(m);
-        
+
     }
 
     private void playGameNumberOfTimesAndVerifyAgainstMetrics(Game game, int numberOfTimes, Metrics m) {
@@ -79,19 +80,21 @@ public class MonitoringTest {
     }
 
     private void updateTestMetricsWithLastGameResult(Game game, Metrics m) {
-        RoundResult result = game.getLastResult();
-        switch (result) {
-            case DRAW:
-                m.totalDraws++;
-                break;
-            case PLAYER_1_WINS:
-                m.totalWinsFirstPlayers++;
-                break;
-            case PLAYER_2_WINS:
-                m.totalWinsSecondPlayers++;
-                break;
-        }
-        m.totalRounds++;
+        Optional<RoundResult> maybeResult = game.getLastResult();
+        maybeResult.ifPresent(result -> {
+            switch (result) {
+                case DRAW:
+                    m.totalDraws++;
+                    break;
+                case PLAYER_1_WINS:
+                    m.totalWinsFirstPlayers++;
+                    break;
+                case PLAYER_2_WINS:
+                    m.totalWinsSecondPlayers++;
+                    break;
+            }
+            m.totalRounds++;
+        });
     }
 
     private void verifyTestMetricsAgainstMonitoring(Metrics m) {

@@ -1,5 +1,6 @@
 package rockpaperscissors;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 import rockpaperscissors.store.DataStore;
 
@@ -27,7 +28,9 @@ public class Game {
     }
     
     public void playRound() {
-        addRound(new Round(player1.move(), player2.move()));
+        Round round = new Round(player1.move(), player2.move());
+        addRound(round);
+        fireRoundEvents(round);
     }
 
     private void addRound(Round round) {
@@ -42,7 +45,16 @@ public class Game {
         store.getRounds().clear();
     }
 
-    public RoundResult getLastResult() {
+    public Optional<RoundResult> getLastResult() {
+        if (store.getRounds().isEmpty()) {
+            return Optional.empty();
+        } else {
+            Round lastRount = store.getRounds().get(store.getRounds().size()-1);
+            return Optional.of(lastRount.getResult());
+        }
+    }
+
+    private void fireRoundEvents(Round round) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

@@ -5,19 +5,25 @@ package rockpaperscissors.monitoring;
  * @author omihalyi
  */
 public class Monitoring {
+    
+    private int totalRounds;
+    private int totalWinsOfFirstPlayers;
+    private int totalWinsOfSecondPlayers;
+    private int totalDraws;
+    
     public int getTotalRounds() {
-        return 0;
+        return totalRounds;
     }
     
     public int getTotalWinsOfFirstPlayers() {
-        return 0;
+        return totalWinsOfFirstPlayers;
     }
 
     public int getTotalWinsOfSecondPlayers() {
-        return 0;
+        return totalWinsOfSecondPlayers;
     }
 
     public int getTotalDraws() {
-        return 0;
+        return totalDraws;
     }
 }

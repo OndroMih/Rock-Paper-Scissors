@@ -12,10 +12,12 @@ public class ObjectFactory {
     
     private final Game game;
     private final DataStore store;
+    private final Monitoring monitoring;
     
     public ObjectFactory() {
         store = new DataStore();
         game = new Game(store);
+        monitoring = new Monitoring();
     }
     
     public Game game() {
@@ -23,10 +25,10 @@ public class ObjectFactory {
     }
 
     public Monitoring monitoring() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return monitoring;
     }
 
     public Game gameInAnotherSession() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return game;
     }
 }
