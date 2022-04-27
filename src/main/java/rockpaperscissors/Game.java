@@ -1,5 +1,6 @@
 package rockpaperscissors;
 
+import jakarta.enterprise.context.SessionScoped;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;

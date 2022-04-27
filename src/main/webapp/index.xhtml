@@ -1,11 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
         <title>#{msg['index.title']}</title>
-    </head>
-    <body>
-        Hello, world!
-    </body>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:commandButton action="#{game.playRound}" value="#{msg['index.playbutton.title']}" update="@form"/>
+            <p:commandButton action="#{game.restart}" value="#{msg['index.reset.title']}" update="@form"/>
+            <p>
+                <h:outputLabel value="#{msg['index.player.numberofrounds']}:" id="label"/>
+                <h:outputText value="#{game.roundsPlayedByUser}" id="text"/>
+            </p>
+            <p:dataTable value="#{game.rounds}" var="round" emptyMessage="#{msg['index.rounds.empty']}">
+                <p:column headerText="#{msg['index.round.player1.move']}">
+                    <h:outputText value="#{round.moveByPlayer1}" />
+                </p:column>
+
+                <p:column headerText="#{msg['index.round.player2.move']}">
+                    <h:outputText value="#{round.moveByPlayer2}" />
+                </p:column>
+
+                <p:column headerText="#{msg['index.round.result']}">
+                    <h:outputText value="#{round.result}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
 </html>
 
