@@ -1,6 +1,7 @@
 package unittests;
 
 import rockpaperscissors.Game;
+import rockpaperscissors.monitoring.Monitoring;
 import rockpaperscissors.store.DataStore;
 
 /**
@@ -19,5 +20,13 @@ public class ObjectFactory {
     
     public Game game() {
         return game;
+    }
+
+    public Monitoring monitoring() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Game gameInAnotherSession() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -41,5 +41,9 @@ public class Game {
     public void restart() {
         store.getRounds().clear();
     }
+
+    public RoundResult getLastResult() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

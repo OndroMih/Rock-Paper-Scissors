@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import rockpaperscissors.PlayersMove;
 import rockpaperscissors.Round;
 import rockpaperscissors.RoundResult;
+import rockpaperscissors.monitoring.Monitoring;
 
 /**
  *
@@ -134,7 +135,7 @@ public class GameTest {
                 .isEqualTo(expectedResult);
                 
     }
-
+    
     private void caseNotCovered() {
         throw new CaseNotCoveredByTest("This case isn't covered by tests");
     }
