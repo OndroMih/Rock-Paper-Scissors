@@ -7,7 +7,7 @@ import java.util.Random;
  *
  * @author omihalyi
  */
-public class RandomPlayer extends Player implements Serializable {
+public class RandomPlayer extends Player {
 
     @Override
     public PlayersMove move() {

@@ -1,27 +1,31 @@
 package rockpaperscissors.view;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.SessionScoped;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 import rockpaperscissors.Game;
 import rockpaperscissors.Round;
+import rockpaperscissors.store.DataStore;
 
 /**
  *
  * @author omihalyi
  */
 @Named("game")
-@SessionScoped
-public class GameView implements Serializable {
+@RequestScoped
+public class GameView {
 
+    @Inject
+    private DataStore store;
+    
     private Game game;
 
     @PostConstruct
     public void init() {
-        game = new Game();
+        game = new Game(store);
     }
 
     public void playRound() {

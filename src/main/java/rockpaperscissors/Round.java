@@ -1,10 +1,12 @@
 package rockpaperscissors;
 
+import java.io.Serializable;
+
 /**
  *
  * @author omihalyi
  */
-public class Round {
+public class Round implements Serializable {
     private PlayersMove moveByPlayer1;
     private PlayersMove moveByPlayer2;
 

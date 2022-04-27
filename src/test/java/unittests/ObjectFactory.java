@@ -1,6 +1,7 @@
 package unittests;
 
 import rockpaperscissors.Game;
+import rockpaperscissors.store.DataStore;
 
 /**
  * Creates objects for tests, hiding the way how the objects are created.
@@ -9,9 +10,11 @@ import rockpaperscissors.Game;
 public class ObjectFactory {
     
     private final Game game;
+    private final DataStore store;
     
     public ObjectFactory() {
-        game = new Game();
+        store = new DataStore();
+        game = new Game(store);
     }
     
     public Game game() {

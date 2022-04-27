@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author omihalyi
  */
-public class AlwaysRockPlayer extends Player implements Serializable {
+public class AlwaysRockPlayer extends Player {
 
     @Override
     public PlayersMove move() {

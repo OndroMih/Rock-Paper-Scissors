@@ -1,27 +1,29 @@
 package rockpaperscissors;
 
-import jakarta.enterprise.context.SessionScoped;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
+import rockpaperscissors.store.DataStore;
 
 /**
  *
  * @author omihalyi
  */
-public class Game implements Serializable {
+public class Game {
 
-    private List<Round> rounds = new ArrayList<>();
+    DataStore store;
+            
     private Player player1 = new RandomPlayer();
     private Player player2 = new AlwaysRockPlayer();
+
+    public Game(DataStore store) {
+        this.store = store;
+    }
     
     public int numberOfRoundsForCurrentUser() {
-        return rounds.size();
+        return store.getRounds().size();
     }
 
     public int roundsPlayed() {
-        return rounds.size();
+        return store.getRounds().size();
     }
     
     public void playRound() {
@@ -29,15 +31,15 @@ public class Game implements Serializable {
     }
 
     private void addRound(Round round) {
-        rounds.add(round);
+        store.getRounds().add(round);
     }
 
     public Stream<Round> getRounds() {
-        return rounds.stream();
+        return store.getRounds().stream();
     }
 
     public void restart() {
-        rounds.clear();
+        store.getRounds().clear();
     }
     
 }
