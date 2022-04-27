@@ -33,5 +33,9 @@ public class Game {
     public Stream<Round> getRounds() {
         return rounds.stream();
     }
+
+    public void restart() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

@@ -1,7 +1,6 @@
 package unittests;
 
 import rockpaperscissors.Game;
-import rockpaperscissors.PlayRoundButton;
 
 /**
  * Creates objects for tests, hiding the way how the objects are created.
@@ -9,19 +8,13 @@ import rockpaperscissors.PlayRoundButton;
  */
 public class ObjectFactory {
     
-    private static final Game game;
-    private static final PlayRoundButton button;
+    private final Game game;
     
-    static {
+    public ObjectFactory() {
         game = new Game();
-        button = new PlayRoundButton(game());
     }
     
-    public static PlayRoundButton playRoundButton() {
-        return button;
-    }
-    
-    public static Game game() {
+    public Game game() {
         return game;
     }
 }

@@ -1,10 +1,12 @@
 package unittests;
 
+import java.util.Random;
 import rockpaperscissors.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
-import rockpaperscissors.PlayRoundButton;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import rockpaperscissors.PlayersMove;
 import rockpaperscissors.Round;
 import rockpaperscissors.RoundResult;
@@ -13,26 +15,47 @@ import rockpaperscissors.RoundResult;
  *
  * @author omihalyi
  */
-public class PlayRoundButtonTest {
+public class GameTest {
 
-    PlayRoundButton button;
     Game game;
 
     @BeforeEach
     public void setUp() {
-        button = ObjectFactory.playRoundButton();
-        game = ObjectFactory.game();
+        ObjectFactory factory = new ObjectFactory();
+        game = factory.game();
+    }
+    
+    @Test
+    public void verifyInitialGameState() {
+        assertThat( game.numberOfRoundsForCurrentUser() ).as("Number of rounds of current user").isEqualTo(0);
+        assertThat( game.roundsPlayed() ).as("Rounds played").isEqualTo(0);
+        assertThat( game.getRounds().count() ).as("Number of round records").isEqualTo(0);
     }
 
     @Test
-    public void playButtonRunsOneRound() {
-        button.press();
+    public void gameRunsOneRound() {
+        game.playRound();
 
         int numberOfRounds = game.numberOfRoundsForCurrentUser();
         assertThat(numberOfRounds).as("Number of rounds").isEqualTo(1);
 
         int roundsPlayed = game.roundsPlayed();
         assertThat(roundsPlayed).as("Rounds played").isEqualTo(1);
+        
+        long roundsRecorded = game.getRounds().count();
+        assertThat(roundsRecorded).as("Number of round records").isEqualTo(1);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3,4,5,6,7,8,9,10})
+    public void statisticsAfterMultipleRounds(int numberOfRoundsToPlay) {
+        runGameMultipleTimes(numberOfRoundsToPlay);
+
+        int numberOfRounds = game.numberOfRoundsForCurrentUser();
+        assertThat(numberOfRounds).as("Number of rounds").isEqualTo(numberOfRoundsToPlay);
+
+        int roundsPlayed = game.roundsPlayed();
+        assertThat(roundsPlayed).as("Rounds played").isEqualTo(numberOfRoundsToPlay);
 
         game.getRounds().forEach(round -> {
             verifyRound(round);
@@ -40,6 +63,26 @@ public class PlayRoundButtonTest {
 
     }
 
+    private void runGameMultipleTimes(int numberOfRoundsToPlay) {
+        for (int i = 0; i < numberOfRoundsToPlay; i++) {
+            game.playRound();
+        }
+    }
+    
+    @Test
+    public void gameRestarts() {
+        runGameMultipleTimes(new Random().nextInt(10) + 1);
+        game.restart();
+        verifyInitialGameState();
+    }
+    
+    @Test
+    public void gameRunsOneRoundAfterRestart() {
+        runGameMultipleTimes(new Random().nextInt(10) + 1);
+        game.restart();
+        gameRunsOneRound();
+    }
+    
     private RoundResult computeResultOfRound(PlayersMove movePlayer1, PlayersMove movePlayer2) {
         if (movePlayer1.equals(movePlayer2)) {
             return RoundResult.DRAW;
