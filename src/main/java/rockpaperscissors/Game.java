@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 public class Game {
 
     private List<Round> rounds = new ArrayList<>();
-    private Player player1 = new Player();
-    private Player player2 = new Player();
+    private Player player1 = new RandomPlayer();
+    private Player player2 = new AlwaysRockPlayer();
     
     public int numberOfRoundsForCurrentUser() {
         return rounds.size();

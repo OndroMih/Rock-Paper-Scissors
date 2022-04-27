@@ -4,8 +4,6 @@ package rockpaperscissors;
  *
  * @author omihalyi
  */
-public class Player {
-    public PlayersMove move() {
-        return PlayersMove.PAPER;
-    }
+public abstract class Player {
+    public abstract PlayersMove move();
 }

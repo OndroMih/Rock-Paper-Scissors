@@ -22,7 +22,12 @@ public class Round {
     }
     
     public RoundResult getResult() {
-        return RoundResult.DRAW;
+        return moveByPlayer1.compareAgainst(moveByPlayer2);
+    }
+
+    @Override
+    public String toString() {
+        return "Round (movebyPlayer1: " + moveByPlayer1 + ", moveByPlayer2: " + moveByPlayer2 + ")";
     }
 
 }
