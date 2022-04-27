@@ -52,6 +52,12 @@
             <version>9.1.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core-impl</artifactId>
+            <version>4.0.3.Final</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

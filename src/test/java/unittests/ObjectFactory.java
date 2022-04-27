@@ -1,5 +1,7 @@
 package unittests;
 
+import jakarta.enterprise.inject.se.SeContainer;
+import jakarta.enterprise.inject.se.SeContainerInitializer;
 import rockpaperscissors.Game;
 import rockpaperscissors.store.DataStore;
 
@@ -13,6 +15,7 @@ public class ObjectFactory {
     private final DataStore store;
     
     public ObjectFactory() {
+        SeContainer cdiContainer = SeContainerInitializer.newInstance().initialize();
         store = new DataStore();
         game = new Game(store);
     }
