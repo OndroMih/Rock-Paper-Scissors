@@ -1,12 +1,13 @@
 package rockpaperscissors;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author omihalyi
  */
-public class RandomPlayer extends Player {
+public class RandomPlayer extends Player implements Serializable {
 
     @Override
     public PlayersMove move() {

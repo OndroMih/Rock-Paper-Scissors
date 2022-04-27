@@ -1,6 +1,7 @@
 package rockpaperscissors;
 
 import jakarta.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -9,7 +10,7 @@ import java.util.stream.Stream;
  *
  * @author omihalyi
  */
-public class Game {
+public class Game implements Serializable {
 
     private List<Round> rounds = new ArrayList<>();
     private Player player1 = new RandomPlayer();
