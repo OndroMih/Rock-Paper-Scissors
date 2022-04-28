@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import rockpaperscissors.PlayersMove;
 import rockpaperscissors.Round;
 import rockpaperscissors.RoundResult;
-import rockpaperscissors.monitoring.Monitoring;
 
 /**
  *
@@ -22,7 +21,7 @@ public class GameTest {
 
     @BeforeEach
     public void setUp() {
-        ObjectFactory factory = new ObjectFactory();
+        ObjectFactory factory = new ObjectFactory(true);
         game = factory.game();
     }
     

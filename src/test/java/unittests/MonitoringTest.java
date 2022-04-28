@@ -20,9 +20,9 @@ public class MonitoringTest {
 
     @BeforeEach
     public void setUp() {
-        ObjectFactory factory = new ObjectFactory();
+        ObjectFactory factory = new ObjectFactory(true);
         game = factory.game();
-        game = factory.gameInAnotherSession();
+        game2 = factory.gameInAnotherSession();
         monitoring = factory.monitoring();
     }
 

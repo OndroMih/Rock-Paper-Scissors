@@ -1,8 +1,14 @@
 package unittests;
 
+import jakarta.enterprise.event.Event;
+import jakarta.enterprise.event.NotificationOptions;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
+import jakarta.enterprise.util.TypeLiteral;
+import java.lang.annotation.Annotation;
+import java.util.concurrent.CompletionStage;
 import rockpaperscissors.Game;
+import rockpaperscissors.Round;
 import rockpaperscissors.monitoring.Monitoring;
 import rockpaperscissors.store.DataStore;
 
@@ -13,6 +19,7 @@ import rockpaperscissors.store.DataStore;
 public class ObjectFactory {
     
     private final Game game;
+    private final Game anotherGame;
     private final Monitoring monitoring;
     
     public ObjectFactory() {
@@ -23,11 +30,14 @@ public class ObjectFactory {
         if (cdiEnabled) {
             SeContainer cdiContainer = SeContainerInitializer.newInstance()
                     .addPackages(Game.class)
+                    .addPackages(Monitoring.class)
                     .initialize();
             game = cdiContainer.select(Game.class).get();
+            anotherGame = cdiContainer.select(Game.class).get();
             monitoring = cdiContainer.select(Monitoring.class).get();
         } else {
-            game = new Game(new DataStore());
+            game = new Game(new DataStore(), new NoopEvent<Round>());
+            anotherGame = new Game(new DataStore(), new NoopEvent<Round>());
             monitoring = new Monitoring();
         }
     }
@@ -41,6 +51,7 @@ public class ObjectFactory {
     }
 
     public Game gameInAnotherSession() {
-        return game;
+        return anotherGame;
     }
+
 }

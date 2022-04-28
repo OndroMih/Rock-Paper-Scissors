@@ -2,6 +2,7 @@ package rockpaperscissors;
 
 import java.util.Optional;
 import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;
 import java.util.stream.Stream;
 import rockpaperscissors.store.DataStore;
@@ -17,10 +18,13 @@ public class Game {
             
     private Player player1 = new RandomPlayer();
     private Player player2 = new AlwaysRockPlayer();
+    
+    private Event<Round> roundFinishedEvent;
 
     @Inject
-    public Game(DataStore store) {
+    public Game(DataStore store, Event<Round> roundFinishedEvent) {
         this.store = store;
+        this.roundFinishedEvent = roundFinishedEvent;
     }
     
     public int numberOfRoundsForCurrentUser() {
@@ -34,11 +38,11 @@ public class Game {
     public void playRound() {
         Round round = new Round(player1.move(), player2.move());
         addRound(round);
-        fireRoundEvents(round);
     }
 
     private void addRound(Round round) {
         store.getRounds().add(round);
+        roundFinishedEvent.fire(round);
     }
 
     public Stream<Round> getRounds() {
@@ -58,8 +62,4 @@ public class Game {
         }
     }
 
-    private void fireRoundEvents(Round round) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
