@@ -2,6 +2,7 @@ package rockpaperscissors.monitoring;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
+import jakarta.inject.Named;
 import java.util.concurrent.atomic.AtomicInteger;
 import rockpaperscissors.Round;
 
@@ -10,6 +11,7 @@ import rockpaperscissors.Round;
  * @author omihalyi
  */
 @ApplicationScoped
+@Named
 public class Monitoring {
     
     private AtomicInteger totalRounds = new AtomicInteger(0);

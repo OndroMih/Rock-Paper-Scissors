@@ -8,8 +8,16 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:commandButton action="#{game.playRound}" value="#{msg['index.playbutton.title']}" update="@form"/>
-            <p:commandButton action="#{game.restart}" value="#{msg['index.reset.title']}" update="@form"/>
+            <p>
+                <p:link outcome="report" value="#{msg['report.title']}"/>
+            </p>
+
+            <p>            
+                <p:commandButton action="#{game.playRound}" value="#{msg['index.playbutton.title']}" update="@form"/>
+            </p>
+            <p>
+                <p:commandButton action="#{game.restart}" value="#{msg['index.reset.title']}" update="@form"/>
+            </p>
             <p>
                 <h:outputLabel value="#{msg['index.player.numberofrounds']}:" id="label"/>
                 <h:outputText value="#{game.roundsPlayedByUser}" id="text"/>
