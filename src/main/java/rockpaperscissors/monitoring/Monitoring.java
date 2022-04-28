@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import rockpaperscissors.Round;
 
 /**
- *
+ * Observes events of type Round and updates metrics based on round results.
  * @author omihalyi
  */
 @ApplicationScoped

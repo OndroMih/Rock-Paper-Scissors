@@ -1,15 +1,18 @@
 package rockpaperscissors;
 
-import java.util.Optional;
 import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;
+import java.util.Optional;
 import java.util.stream.Stream;
+import rockpaperscissors.monitoring.Monitoring;
 import rockpaperscissors.store.DataStore;
 
 /**
- *
+ * Game engine. Stateless - all the state stored in the injected store field. 
+ * Fires event of type Round after a round is finished. This can be observed e.g. by monitoring
  * @author omihalyi
+ * @see Monitoring
  */
 @Dependent
 public class Game {

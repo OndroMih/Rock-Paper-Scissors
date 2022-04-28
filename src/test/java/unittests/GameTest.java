@@ -1,12 +1,12 @@
 package unittests;
 
 import java.util.Random;
-import rockpaperscissors.Game;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import rockpaperscissors.Game;
 import rockpaperscissors.PlayersMove;
 import rockpaperscissors.Round;
 import rockpaperscissors.RoundResult;

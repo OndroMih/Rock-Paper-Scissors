@@ -7,7 +7,7 @@ import java.util.List;
 import rockpaperscissors.Round;
 
 /**
- *
+ * The default store for the game. Session scoped - each user/session has its own storage.
  * @author omihalyi
  */
 @SessionScoped

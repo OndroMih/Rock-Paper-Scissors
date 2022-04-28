@@ -1,12 +1,7 @@
 package unittests;
 
-import jakarta.enterprise.event.Event;
-import jakarta.enterprise.event.NotificationOptions;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import jakarta.enterprise.util.TypeLiteral;
-import java.lang.annotation.Annotation;
-import java.util.concurrent.CompletionStage;
 import rockpaperscissors.Game;
 import rockpaperscissors.Round;
 import rockpaperscissors.monitoring.Monitoring;
@@ -22,10 +17,18 @@ public class ObjectFactory {
     private final Game anotherGame;
     private final Monitoring monitoring;
     
+    /**
+     * Create objects using plain Java.
+     */
     public ObjectFactory() {
         this(false);
     }
     
+    /**
+     * Whether to create objects using CDI or with plain Java. 
+     * CDI provides more features but plain Java is faster and preferred if CDI isn't needed.
+     * @param cdiEnabled If true, create objects using CDI
+     */
     public ObjectFactory(boolean cdiEnabled) {
         if (cdiEnabled) {
             SeContainer cdiContainer = SeContainerInitializer.newInstance()

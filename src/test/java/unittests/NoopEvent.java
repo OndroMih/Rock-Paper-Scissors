@@ -7,7 +7,7 @@ import java.lang.annotation.Annotation;
 import java.util.concurrent.CompletionStage;
 
 /**
- *
+ * A mock event that doesn't fire any event.
  * @author omihalyi
  */
 class NoopEvent<T> implements Event<T> {
@@ -21,12 +21,10 @@ class NoopEvent<T> implements Event<T> {
 
     @Override
     public <U extends T> CompletionStage<U> fireAsync(U event) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <U extends T> CompletionStage<U> fireAsync(U event, NotificationOptions options) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

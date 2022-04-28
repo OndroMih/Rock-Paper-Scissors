@@ -1,10 +1,9 @@
 package rockpaperscissors;
 
-import java.io.Serializable;
 import java.util.Random;
 
 /**
- *
+ * Player which chooses random moves.
  * @author omihalyi
  */
 public class RandomPlayer extends Player {

@@ -1,12 +1,12 @@
 package unittests;
 
 import java.util.Optional;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import rockpaperscissors.Game;
-import rockpaperscissors.monitoring.Monitoring;
-import static org.assertj.core.api.Assertions.*;
 import rockpaperscissors.RoundResult;
+import rockpaperscissors.monitoring.Monitoring;
 
 /**
  *

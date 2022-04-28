@@ -3,7 +3,7 @@ package rockpaperscissors;
 import java.io.Serializable;
 
 /**
- *
+ * Represents a single round after each player did their move.
  * @author omihalyi
  */
 public class Round implements Serializable {

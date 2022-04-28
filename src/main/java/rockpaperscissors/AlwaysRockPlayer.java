@@ -1,9 +1,7 @@
 package rockpaperscissors;
 
-import java.io.Serializable;
-
 /**
- *
+ * Player which always chooses Rock move
  * @author omihalyi
  */
 public class AlwaysRockPlayer extends Player {

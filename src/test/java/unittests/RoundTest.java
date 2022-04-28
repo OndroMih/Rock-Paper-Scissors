@@ -1,12 +1,12 @@
 package unittests;
 
 import java.util.stream.Stream;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import rockpaperscissors.PlayersMove;
-import rockpaperscissors.RoundResult;
-import static org.assertj.core.api.Assertions.*;
 import rockpaperscissors.Round;
+import rockpaperscissors.RoundResult;
 
 /**
  *
