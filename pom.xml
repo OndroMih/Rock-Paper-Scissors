@@ -13,6 +13,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <cargo.servlet.port>8080</cargo.servlet.port>
+        <cargo.zipUrlInstaller.downloadDir>${project.build.directory}/../installs</cargo.zipUrlInstaller.downloadDir>
     </properties>
 
     <dependencies>
@@ -68,4 +70,35 @@
             </plugin>
         </plugins>
     </build>
+    
+    <profiles>
+        <profile>
+            <id>glassfish</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven3-plugin</artifactId>
+                        <version>1.9.11</version>
+                        <configuration>
+                            <container>
+                                <containerId>glassfish6x</containerId>
+                                <artifactInstaller>
+                                    <groupId>org.glassfish.main.distributions</groupId>
+                                    <artifactId>glassfish</artifactId>
+                                    <version>6.2.5</version>
+                                    <type>zip</type>
+                                </artifactInstaller>
+                            </container>
+                            <configuration>
+                                <properties>
+                                    <cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
+                                </properties>
+                            </configuration>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
