@@ -1,6 +1,5 @@
 package rockpaperscissors.view;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -21,12 +20,8 @@ public class GameView {
     @Inject
     private DataStore store;
     
+    @Inject
     private Game game;
-
-    @PostConstruct
-    public void init() {
-        game = new Game(store);
-    }
 
     public void playRound() {
         game.playRound();

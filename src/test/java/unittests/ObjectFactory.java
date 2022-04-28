@@ -1,5 +1,7 @@
 package unittests;
 
+import jakarta.enterprise.inject.se.SeContainer;
+import jakarta.enterprise.inject.se.SeContainerInitializer;
 import rockpaperscissors.Game;
 import rockpaperscissors.monitoring.Monitoring;
 import rockpaperscissors.store.DataStore;
@@ -11,13 +13,23 @@ import rockpaperscissors.store.DataStore;
 public class ObjectFactory {
     
     private final Game game;
-    private final DataStore store;
     private final Monitoring monitoring;
     
     public ObjectFactory() {
-        store = new DataStore();
-        game = new Game(store);
-        monitoring = new Monitoring();
+        this(false);
+    }
+    
+    public ObjectFactory(boolean cdiEnabled) {
+        if (cdiEnabled) {
+            SeContainer cdiContainer = SeContainerInitializer.newInstance()
+                    .addPackages(Game.class)
+                    .initialize();
+            game = cdiContainer.select(Game.class).get();
+            monitoring = cdiContainer.select(Monitoring.class).get();
+        } else {
+            game = new Game(new DataStore());
+            monitoring = new Monitoring();
+        }
     }
     
     public Game game() {
