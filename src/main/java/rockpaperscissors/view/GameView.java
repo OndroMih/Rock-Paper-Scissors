@@ -3,6 +3,7 @@ package rockpaperscissors.view;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import rockpaperscissors.Game;
@@ -32,7 +33,9 @@ public class GameView {
     }
 
     public List<Round> getRounds() {
-        return game.getRounds().collect(Collectors.toList());
+        final List<Round> rounds = game.getRounds().collect(Collectors.toList());
+        Collections.reverse(rounds);
+        return rounds;
     }
     
     public void restart() {
